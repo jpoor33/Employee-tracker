@@ -23,15 +23,10 @@ const collectEmployees = function () {
     }
 
     let salary = prompt(`Please Enter Your Salary`);
-    salary = Number(salary); //converting the string into a number so I can calculate the average
+    salary = parseFloat(salary); //converting the string into a number so I can calculate the average
     if (salary === null) { // Check if user cancels
       keepGoing = false; // Exit the loop
       break; // Optional: break the loop immediately
-    }
-    
-    if (confirm("Finish adding employees?")) {
-      // If the user confirms they want to stop adding employees
-      keepGoing = false; // Exit the loop
     }
 
     employeesArray.push({
@@ -39,6 +34,12 @@ const collectEmployees = function () {
       lastName: lastName,
       salary: salary
     }); 
+
+    if (!confirm("Do you want to add more employees?")) {
+      // If the user confirms they want to stop adding employees
+  
+      break;
+    }
   } 
 
   console.log(employeesArray);
@@ -52,9 +53,7 @@ const displayAverageSalary = function (employeesArray) {
   function getSalaries(employeesArray) {
     const totalSalaries = []; // Initialize the array to hold salaries inside the function
     for (const employee of employeesArray) { // Loop through each employee object
-      if (typeof employee.salary === 'number') { // Check if salary is a number
-        totalSalaries.push(employee.salary); // Push salary to the totalSalaries array
-      }
+        totalSalaries.push(employee.salary); // Push salary to the totalSalaries arr
     }
     return totalSalaries; // Return the totalSalaries array
   }
